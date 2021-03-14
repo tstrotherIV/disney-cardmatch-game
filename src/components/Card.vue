@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ flipcard: flippedClass}" @click="cardClicked">
+  <div :class="{ flipcard: flippedClass }" @click="cardClicked">
     <div class="flip-card-inner">
       <div class="flip-card-front">
         <img
@@ -9,7 +9,12 @@
         />
       </div>
       <div class="flip-card-back">
-        <img :src="card.image" alt="Disney Playing Card" height="350px" />
+        <img
+          :src="require('@/assets/' + card.image)"
+          :alt="card.name"
+          :title="card.name"
+          height="350px"
+        />
       </div>
     </div>
   </div>
@@ -34,9 +39,11 @@ export default {
   computed: {
     flippedClass() {
       return (
-        this.card.foundMatch || this.card.name === this.guess1 || this.card.name === this.guess2
-      )
-    }
+        this.card.foundMatch ||
+        this.card === this.guess1 ||
+        this.card === this.guess2
+      );
+    },
   },
 };
 </script>
